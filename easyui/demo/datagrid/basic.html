@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic DataGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+<body>
+	<table id="tableForm"></table>
+<script type="text/javascript">
+$(function(){
+	$('#tableForm').datagrid({
+			url:'',
+            method: 'post',
+            singleSelect: true, fitColumns: false, rownumbers: true, pagination: false, showFooter: true, showHeader: true,
+			queryParams: {
+                //writime: $("#lastTime").datebox('getValue')
+            },
+			frozenColumns: [[
+				{ field: 'R1', title: '单位名称',  align: 'center' }
+            ]],
+            columns:[
+                [
+                        
+                        { field: 'R2', title: '填报时期', rowspan: 4, align: 'center' },
+                        { title: '房屋建筑物', rowspan: 3,colspan: 3, align: 'center' },
+                        { title: '有房产证', colspan: 16, align: 'center' },
+                        { title: '无房产证且有相关合规手续', colspan: 16, align: 'center' },
+                        { title: '无房产证且手续不全', colspan: 4, rowspan: 3, align: 'center' },
+                        { title: '临时建筑', colspan: 4, rowspan: 3, align: 'center' },
+                        { title: '违章建筑', colspan: 4, rowspan: 3, align: 'center' }
+                ], [
+                        { title: '实际建筑与规划一致', colspan: 8, align: 'center' },
+                        { title: '实际建筑与规划不一致', colspan: 8, align: 'center' },
+                        { title: '实际建筑与规划一致', colspan: 8, align: 'center' },
+                        { title: '实际建筑与规划不一致', colspan: 8, align: 'center' }
+                ], [
+                        { title: '现用途与规划用途一致', colspan: 4, align: 'center' },
+                        { title: '现用途与规划用途不一致', colspan: 4, align: 'center' },
+						
+						{ title: '现用途与规划用途一致', colspan: 4, align: 'center' },
+                        { title: '现用途与规划用途不一致', colspan: 4, align: 'center' },
+						
+						{ title: '现用途与规划用途一致', colspan: 4, align: 'center' },
+                        { title: '现用途与规划用途不一致', colspan: 4, align: 'center' },
+						
+						{ title: '现用途与规划用途一致', colspan: 4, align: 'center' },
+                        { title: '现用途与规划用途不一致', colspan: 4, align: 'center' },
+						
+						{ title: '现用途与规划用途一致', colspan: 4, align: 'center' },
+                        { title: '现用途与规划用途不一致', colspan: 4, align: 'center' },
+						
+						{ title: '现用途与规划用途一致', colspan: 4, align: 'center' },
+                        { title: '现用途与规划用途不一致', colspan: 4, align: 'center' },
+						
+						{ title: '现用途与规划用途一致', colspan: 4, align: 'center' },
+                        { title: '现用途与规划用途不一致', colspan: 4, align: 'center' },
+						
+						{ title: '现用途与规划用途一致', colspan: 4, align: 'center' },
+                        { title: '现用途与规划用途不一致', colspan: 4, align: 'center' }
+                ], [
+						{ field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '规划总面积<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '实际总面积<br />(平方米)', width: 80,  align: 'center' },
+				
+                        { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' },
+						
+						 { field: 'R3', title: '处数', width: 80, align: 'center' },
+                        { field: 'R4', title: '占比(%)', width: 80, align: 'center' },
+                        { field: 'R5', title: '面积合计<br />(平方米)', width: 80, align: 'center' },
+                        { field: 'R5', title: '占比<br />(平方米)', width: 80, align: 'center' }
+                ]
+            ]
+			});
+	})
+</script>
+</body>
+</html>

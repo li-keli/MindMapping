@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=8">
+<link rel="stylesheet" type="text/css" href="style/jsmind.css">
+<link rel="stylesheet" type="text/css" href="easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+<!--[if lt IE 7]>
+    <script type="text/javascript" src="style/entypo/lte-ie7.js"></script>
+<![endif]-->
+<title>无标题文档</title>
+</head>
+
+<body>
+<div>
+
+</div>
+<div id="jsmind_container"></div>
+
+<div id="mm" class="easyui-menu" style="width:120px; z-index:99999">
+    <div data-options="iconCls:'icon-add'">
+        <span>新建</span>
+        <div style="width:150px;">
+            <div onClick="add_node()">私有标签</div>
+            <div data-options="disabled:true" onClick="">共有标签</div>
+        </div>
+    </div>
+    <div class="menu-sep"></div>
+    <div data-options="iconCls:'icon-edit'" onClick="modify_node()">编辑标签</div>
+    <div data-options="iconCls:'icon-remove',disabled:true">删除标签</div>
+    <div data-options="iconCls:'icon-large-shapes'" onClick="show_detail()">企业明细</div>
+</div>
+
+<div id="win"></div>
+    
+<script src="js/jquery-1.4.4.min.js"></script>
+<script src="easyui/jquery.easyui.min.js"></script>
+<script src="js/jsmind.js" type="text/javascript"></script>
+<script src="js/jsmind.draggable.js" type="text/javascript"></script>
+<script src="js/jquery.contextmenu.r2.js" type="text/javascript"></script>
+<script src="js/html5shiv.js" type="text/javascript"></script>
+<script type="text/javascript">
+  	var _jm = null;
+    function load_jsmind(){
+			var mind = {
+            "meta":{
+                "name":"demo",
+                "author":"hizzgdev@163.com",
+                "version":"0.2",
+            },
+            "format":"node_array",
+            "data":[
+                {"id":"root", "isroot":true, "topic":"一、二、三次产业","isreadonly":"true"},
+
+                {"id":"sub1", "parentid":"root", "topic":"第一产业（90）","isreadonly":"true"},
+                {"id":"sub12", "parentid":"sub1", "topic":"农、林、牧、渔业（40）","isreadonly":"true"},
+                {"id":"sub121", "parentid":"sub12", "topic":"农业"},
+				{"id":"sub122", "parentid":"sub12", "topic":"林业"},
+				{"id":"sub123", "parentid":"sub12", "topic":"畜牧业"},
+				{"id":"sub124", "parentid":"sub12", "topic":"渔业"},
+				{"id":"sub125", "parentid":"sub12", "topic":"农、林、牧、渔服务业"},
+				
+                {"id":"sub2", "parentid":"root", "topic":"第二产业（130）","isreadonly":"true"},
+                {"id":"sub21", "parentid":"sub2", "topic":"采矿业（30）","isreadonly":"true"},
+                {"id":"sub22", "parentid":"sub2", "topic":"制造业（100）","isreadonly":"true"},
+				{"id":"sub23", "parentid":"sub2", "topic":"电力、燃气及水的生产和供应业（100）","isreadonly":"true"},
+				{"id":"sub24", "parentid":"sub2", "topic":"建筑业（100）","isreadonly":"true"},
+				
+                {"id":"sub3", "parentid":"root", "topic":"第三产业（0）"},
+				{"id":"sub31", "parentid":"sub3", "topic":"交通运输、仓储和邮政业（100）","isreadonly":"true"},
+				{"id":"sub311", "parentid":"sub31", "topic":"铁路运输业（0）"},
+				{"id":"sub312", "parentid":"sub31", "topic":"道路运输业（0）"},
+				{"id":"sub313", "parentid":"sub31", "topic":"城市公共交通业（0）"},
+				{"id":"sub314", "parentid":"sub31", "topic":"水上运输业（0）"},
+				{"id":"sub315", "parentid":"sub31", "topic":"航空运输业（0）"},
+				{"id":"sub3", "parentid":"sub31", "topic":"管道运输业（0）"},
+				{"id":"sub32", "parentid":"sub3", "topic":"信息传输、计算机服务和软件业（87）","isreadonly":"true"},
+				{"id":"sub33", "parentid":"sub3", "topic":"批发和零售业（35）","isreadonly":"true"},
+				{"id":"sub34", "parentid":"sub3", "topic":"住宿和餐饮业（87）","isreadonly":"true"},
+				{"id":"sub35", "parentid":"sub3", "topic":"金融业（162）","isreadonly":"true"},
+				{"id":"sub36", "parentid":"sub3", "topic":"房地产业（11）","isreadonly":"true"},
+				{"id":"sub37", "parentid":"sub3", "topic":"租赁和商务服务业（210）","isreadonly":"true"},
+				{"id":"sub38", "parentid":"sub3", "topic":"科学研究、技术服务和地质勘查业（56）","isreadonly":"true"},
+				{"id":"sub39", "parentid":"sub3", "topic":"水利、环境和公共设施管理业（81）","isreadonly":"true"},
+				{"id":"sub310", "parentid":"sub3", "topic":"居民服务和其他服务业（121）","isreadonly":"true"},
+            ]
+        };
+        var options = {
+            container:'jsmind_container',
+            editable:false,
+            theme:'primary',
+			mode :'full'
+        }
+        _jm = jsMind.show(options,mind);
+    }
+	
+	function get_selected_nodeid(){
+        var selected_node = _jm.get_selected_node();
+        if(!!selected_node){
+            return selected_node.id;
+        }else{
+            return null;
+        }
+    }
+	
+	function modify_node(){
+		$.messager.prompt('编辑标签', '请输入新的标签名', function(r){
+			if (r){
+				var selected_id = get_selected_nodeid();
+				_jm.enable_edit();
+				_jm.update_node(selected_id, r + "（0）");
+				_jm.disable_edit();
+			}
+		});
+    }
+	
+	function add_node(){
+		$.messager.prompt('新增标签', '请输入标签名', function(r){
+			if (r){
+				var nodeid = jsMind.util.uuid.newid();
+				var topic = r+'（0）';
+				_jm.enable_edit();
+				//扩展方法， right 将子节点增加到右侧， left 将子节点增加到左侧，默认右侧
+				var node = _jm.add_node(_jm.get_selected_node(), nodeid, topic, null, "right");
+				_jm.disable_edit();
+			}
+		});
+    }
+	
+	function right()  
+ 	{  
+        var e=window.event; 
+        if(e.button=="2"){  
+            console.debug("右键");
+        }
+ 	}  
+	
+	function show_selected(){
+        var selected_node = _jm.get_selected_node();
+        if(!!selected_node){
+			return selected_node.data.isreadonly;
+        }else{
+            console.debug("nothing");
+        }
+    }
+	
+	function toggle_node(){
+        var selected_id = get_selected_nodeid();
+        if(!selected_id){alert('请先选择一个节点');}
+        _jm.toggle_node(selected_id);
+    }
+	
+	function show_detail(){
+		var href='CompanyLists.html';
+		$('#win').window({   
+			title:"企业明细", 
+			width:1200,height:600,    
+			modal:true,shadow: true,collapsible:false,minimizable:false,maximizable:false,
+			content:'<iframe scrolling="no" frameborder="0"  src="'+href+'" style="width:100%;height:99.5%;"></iframe>'
+		});  	
+	}
+
+	$(function(){
+		load_jsmind();
+		$("jmnode").live('contextmenu',function(e){
+			e.preventDefault();
+			$('#mm').menu('show', {
+				left: e.pageX,
+				top: e.pageY,
+				hideOnUnhover: false
+			});
+		});
+    });
+</script>
+</body>
+</html>
