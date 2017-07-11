@@ -8,4 +8,4 @@
 
 # 图示
 
-![github](https://github.com/CBDlkl/MindMapping/blob/master/2.png "github")
+![github](2.png "github")
